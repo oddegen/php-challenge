@@ -1,6 +1,6 @@
 grpc:
   listen: "tcp://:9001"
-  proto: "service.proto"
+  proto: "proto/service.proto"
   workers:
     command: "php worker.php"
     pool:
