@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option php_namespace = "App\\Echo";
+option php_namespace = "App\\EchoService";
 option php_metadata_namespace = "App\\GPBMetadata";
 
 package service;

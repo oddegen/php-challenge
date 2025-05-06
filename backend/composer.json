@@ -6,7 +6,11 @@
     }
   },
   "require": {
-    "php": "7.3.*",
-    "spiral/php-grpc": "^1.2"
-  }
+    "spiral/php-grpc": "*"
+  },
+  "require-dev": {
+    "grpc/grpc": "^1.36"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }

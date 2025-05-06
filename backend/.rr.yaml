@@ -7,7 +7,7 @@ grpc:
       numWorkers: 4
 
 metrics:
-  address: localhost:2112
+  address: 0.0.0.0:2112
 
 limit:
   interval: 1

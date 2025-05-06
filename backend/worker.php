@@ -1,15 +1,16 @@
 <?php
 
-use App\Echo\EchoInterface;
+use App\EchoService\EchoInterface;
 use App\EchoService;
 use Spiral\Goridge\StreamRelay;
 use Spiral\GRPC\Server;
 use Spiral\RoadRunner\Worker;
 
+ini_set('display_errors', 'stderr');
 require __DIR__ . '/vendor/autoload.php';
 
 $server = new Server(null, [
-    'debug' => false, // optional (default: false)
+    'debug' => true, // optional (default: false)
 ]);
 
 $server->registerService(EchoInterface::class, new EchoService());

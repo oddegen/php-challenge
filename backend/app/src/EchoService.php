@@ -3,8 +3,8 @@
 namespace App;
 
 use Spiral\GRPC\ContextInterface;
-use App\Echo\EchoInterface;
-use App\Echo\Message;
+use App\EchoService\EchoInterface;
+use App\EchoService\Message;
 
 class EchoService implements EchoInterface
 {
