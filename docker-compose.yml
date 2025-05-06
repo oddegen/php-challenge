@@ -1,0 +1,39 @@
+services:
+  envoy:
+    image: envoyproxy/envoy:v1.33-latest
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml
+    networks:
+      - backend
+  
+  grpc-backend:
+    build:
+      context: .
+      dockerfile: ./backend/docker/backend.Dockerfile
+      tags:
+        - grpc-backend
+    ports:
+      - '2112:2112'
+      - '9001:9001'
+    networks:
+      - backend
+    stop_grace_period: 200ms
+  
+  grpc-frontend:
+    build:
+      context: ./
+      dockerfile: ./frontend/docker/frontend.Dockerfile
+      tags:
+        - grpc-frontend
+    ports:
+      - '3000:80'
+    networks:
+      - backend
+    depends_on:
+      - grpc-backend
+    stop_grace_period: 200ms
+
+networks:
+  backend:

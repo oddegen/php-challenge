@@ -1,20 +1,30 @@
 import { useState } from 'react'
+import { echoClient } from './grpc'
+import { Message } from './generated/service'
 
 function App() {
-  const [reply, setReply] = useState('')
+  const [value, setValue] = useState('')
+  const [response, setResponse] = useState('')
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
+    try {
+      const msg = await echoClient.ping(Message.create({ msg: value }))
+      setResponse(msg.response.msg)
+    } catch (error) {
+      console.error('Error:', error)
+    }
   }
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="input">Input: </label>
-        <input id="input" type="text" />{' '}
-        <button>Send</button>
+        <input id="input" type="text" value={value} onChange={e => setValue(e.target.value)} />{' '}
+        <button type='submit'>Send</button>
       </form>
-      <p>Reply: {reply}</p>
+      <p>Reply: {response}</p>
     </div>
   )
 }
