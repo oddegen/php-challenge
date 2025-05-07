@@ -13,7 +13,7 @@ RUN chmod +x /usr/local/bin/rr-grpc && rm -rf /tmp/rr-grpc-install
 WORKDIR /app
 
 COPY ./backend .
-COPY ./proto .
+COPY ./proto ./proto
 
 RUN composer install
 

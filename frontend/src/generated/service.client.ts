@@ -24,6 +24,7 @@ export class EchoClient implements IEchoClient, ServiceInfo {
     typeName = Echo.typeName;
     methods = Echo.methods;
     options = Echo.options;
+    // @ts-expect-error erasableSyntaxOnly
     constructor(private readonly _transport: RpcTransport) {
     }
     /**
